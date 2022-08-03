@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<div th:replace="admin/header"></div>
+	<div class="container">
+		<a href="/admin/articles/showForm" class="btnAdd">
+			<button>Novo Artigo</button>
+		</a>
+		<h2>Lista de Artigos</h2>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Titulo</th>
+					<th scope="col">Categoria</th>
+					<th scope="col">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="article : ${articles}">
+					<th scope="row" th:text="${article.id}"></th>
+					<td th:text="${article.name}"></td>
+					<td th:text="${article.category.name}"></td>
+					<td>
+						<a th:href="@{/admin/articles/edit/{id}(id=${article.id})}" class="btn btn-primary"><i
+								class="fas fa-user-edit ml-2"></i></a>
+						<a th:href="@{/admin/articles/delete/{id}(id=${article.id})}"
+							onClick="confirmDelete(event,this)" class="btn btn-danger"
+							th:id="@{{id}(id=${article.id})}"><i class="fas fa-user-times ml-2"></i></a>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+
+	<script>
+		function confirmDelete(event, element) {
+			console.log(element.id)
+			event.preventDefault();
+			let decision = confirm("Você tem a certeza que deseja Eliminar?");
+			if (decision) {
+				window.location.href = `/admin/articles/delete/${element.id}`;
+			}
+		}
+	</script>
+</body>
+
+</html>

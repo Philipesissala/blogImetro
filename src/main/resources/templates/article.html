@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <div th:replace="header"></div>
+    <article>
+      <img th:src="@{assets/user2.jpg}" alt="" />
+      <h1 th:text="${article.name}"></h1>
+      <div th:text="${article.body}"></div>
+    </article>
+  </body>
+</html>

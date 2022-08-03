@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+        <div class="logo"><a href="/"><img th:src="@{assets/download.png}" alt="" /></a></div>
+          <ul th:each="category : ${categories}">
+            <li><a th:href="@{/articles/{slug}(slug=${category.slug})}" th:text="${category.name}"></a></li>
+            
+          </ul>
+        </nav>
+      </div>
+    </header>
+  </body>
+</html>

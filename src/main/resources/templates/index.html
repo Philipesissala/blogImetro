@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+  </head>
+  <body>
+    <div th:replace="header"></div>
+    <section class="banner">
+      <div class="container">
+        <h1>Imetro</h1>
+        <p>
+          Mario Padreh.
+          <br />Obcaecati eius quisquam, expedita consequuntur reprehenderit
+          perferendis.
+        </p>
+        <a href="#"><button>Inscreva-se</button></a>
+      </div>
+    </section>
+    <section id="cards">
+      <div class="card" th:each="article : ${articles}">
+        <img th:src="@{assets/user2.jpg}" alt="" />
+        <div class="content__info">
+          <div class="category">
+            <a href="" th:text="${article.category.name}">Categiria</a>
+          </div>
+          <div class="content-title">
+            <a
+              th:href="@{/article/{slug}(slug=${article.slug})}"
+              name="article"
+              th:text="${article.name}"
+              value="${article.id}"
+            ></a>
+          </div>
+          <div class="autor">
+            <p><span>Autor: </span>Thiago Marinho</p>
+            <p class="time">data</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div th:replace="footer"></div>
+  </body>
+</html>
